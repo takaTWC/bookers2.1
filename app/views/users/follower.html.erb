@@ -1,0 +1,33 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <h2>Follower Users</h2>
+    <table class="table">
+      <thaed>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thaed>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= link_to user_path(user) do %>
+                <%= image_tag user.get_profile_image, size:'50x50' %>
+              <% end %>
+            </td>
+            <td><%= user.name %></td>
+            <td><p><%= user.followings.count %> Following</p></td>
+            <td><p><%= user.followers.count %> Followers</p></td>
+            <td>
+              <% if user.following?(current_user) && current_user.following?(user) %>
+                <p>Follows you</p>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
