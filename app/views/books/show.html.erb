@@ -10,6 +10,7 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
+  		  <tbody>
   		  <tr>
           <td><%= link_to(@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
@@ -22,21 +23,21 @@
             <%= render 'favorites/favorite',book: @book %>
           </td>
           <td>
-            <p>コメント数：<%= @book.book_comments.count %></p>
+            <span id = "comment_count"><%= @book.book_comments.count %></span> Comments
           </td>
           <% if @current_user == @book.user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
+        </tbody>
       </table>
-      <%= render 'comment', book: @book %>
-      <%= form_with model: [@book, @book_comment], html: { class: 'form' } do |f| %>
-        <div class="form-group">
-          <%= f.text_area :comment, rows: '4', placeholder: "Comment Here", class: 'form-control' %>
-        </div>
-        <%= f.submit "送信", class: 'btn btn-primary' %>
-      <% end %>
+      <div id = "book-comments">
+        <%= render 'comment', book: @book %>
+      </div>
+      <div id = "comment-form">
+        <%= render 'comment-form', book: @book, book_comment: @book_comment %>
+      </div>
     </div>
   </div>
 </div>
