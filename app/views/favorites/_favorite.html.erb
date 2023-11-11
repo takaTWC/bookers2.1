@@ -1,9 +1,11 @@
 <% if book.favorited_by?(current_user) %>
     <%= link_to book_favorite_path(book), method: :delete, remote: true, data: {"turbolinks" => false} do %>
-      ♥<%= book.favorites.count %>
+      <i class="fa-solid fa-star"></i>
+      <%= book.favorites.count %>
     <% end %>
 <% else %>
     <%= link_to book_favorite_path(book), method: :post, remote: true do %>
-      ♡<%= book.favorites.count %>
+      <i class="fa-regular fa-star"></i>
+      <%= book.favorites.count %>
     <% end %>
 <% end %>

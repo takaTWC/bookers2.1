@@ -21,7 +21,8 @@
           <%= render 'favorites/favorite',book: book %>
         </td>
         <td>
-          <%= book.book_comments.count %> Comments
+          <i class="fa-regular fa-comment"></i> 
+          <%= book.book_comments.count %>
         </td>
       </tr>
     <% end %>
